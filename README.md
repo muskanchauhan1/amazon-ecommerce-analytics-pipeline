@@ -352,6 +352,8 @@ E002      U002     view            NaN        Sports    Nike  desktop
 ============================================================
 ```
 
+![Demo Output](screenshots/demo_output.png)
+
 This demo runs all pipeline logic in-memory using pandas — it faithfully simulates each layer (ingestion → ETL → ML → warehouse) without any cloud infrastructure.
 
 ---
@@ -394,6 +396,8 @@ docker-compose ps
 ```
 
 All three services should show `Up`.
+
+![Docker Containers Running](screenshots/docker_running.png)
 
 ### Step 3 — Open the Airflow UI
 
@@ -542,6 +546,8 @@ load_to_redshift          ← COPY from S3 curated/features into star schema
     ▼
 refresh_materialized_views ← Refreshes daily aggregation MVs for BI
 ```
+
+![Airflow DAG Graph](screenshots/airflow_dag.png)
 
 **Reliability features:**
 - `retries: 2` with `retry_delay: 5 minutes` — automatically retries transient AWS failures
@@ -692,19 +698,6 @@ Here are practical next steps to make this even more impressive:
 **Productionize the LTV model** — Package the Spark ML model with MLflow, version it to S3, and serve predictions via a Lambda endpoint for real-time personalization.
 
 **Add cost monitoring** — Tag all AWS resources with `Project=ecommerce-pipeline` and use AWS Cost Explorer to track spend per pipeline stage.
-
----
-
-## Screenshots
-
-### Airflow DAG — Pipeline Orchestration
-![Airflow DAG Graph](screenshots/airflow_dag.png)
-
-### Demo Output — Local Pipeline Run
-![Demo Output](screenshots/demo_output.png)
-
-### Docker Stack Running
-![Docker Containers](screenshots/docker_running.png)
 
 ---
 
