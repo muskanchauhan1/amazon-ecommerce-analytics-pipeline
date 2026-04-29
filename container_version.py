@@ -14,7 +14,7 @@ DEFAULT_ARGS = {
     'sla': timedelta(hours=2),
 }
 
-def crawl_raw():
+def crawl_raw_zone():
     print("Simulating Glue Crawler: Updating Data Catalog...")
 
 def glue_etl_job():

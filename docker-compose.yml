@@ -21,8 +21,8 @@ services:
       - AWS_ACCESS_KEY_ID=dummy
       - AWS_SECRET_ACCESS_KEY=dummy
     volumes:
-      - /c/Users/hp/OneDrive/Desktop/All_projects/amazon_project/dags:/opt/airflow/dags
-      - /c/Users/hp/OneDrive/Desktop/All_projects/amazon_project/data:/opt/airflow/data
+      - /c/Users/hp/OneDrive/Desktop/All_projects/amazon_project/dags:/opt/airflow/dags:ro
+      - /c/Users/hp/OneDrive/Desktop/All_projects/amazon_project/data:/opt/airflow/data:ro
     ports:
       - "8080:8080"
     command: standalone
