@@ -695,6 +695,19 @@ Here are practical next steps to make this even more impressive:
 
 ---
 
+## Screenshots
+
+### Airflow DAG — Pipeline Orchestration
+![Airflow DAG Graph](screenshots/airflow_dag.png)
+
+### Demo Output — Local Pipeline Run
+![Demo Output](screenshots/demo_output.png)
+
+### Docker Stack Running
+![Docker Containers](screenshots/docker_running.png)
+
+---
+
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.
