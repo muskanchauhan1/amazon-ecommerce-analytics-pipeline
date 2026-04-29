@@ -46,6 +46,8 @@ Kinesis Data Streams → Lambda (real-time enrichment)
 
 ## Project Structure
 
+## Project Structure
+
 ```
 ├── dags/                  # Airflow DAGs
 ├── glue_jobs/             # Glue ETL scripts
@@ -55,6 +57,64 @@ Kinesis Data Streams → Lambda (real-time enrichment)
 ├── data/                  # Sample datasets
 ├── infra/                 # Terraform / CloudFormation
 └── tests/                 # Unit & integration tests
+```
+
+## Demo Output
+
+```
+============================================================
+  AMAZON E-COMMERCE ANALYTICS PIPELINE - LOCAL DEMO
+============================================================
+
+[1] Ingesting 1M events from Kinesis streams...
+Raw events count: 6
+event_id user_id event_type  price    category  brand  device
+    E001    U001   purchase 129.99 Electronics   Sony  mobile
+    E002    U002       view    NaN      Sports   Nike desktop
+    E003    U001      click    NaN Electronics   Sony  mobile
+    E004    U003   purchase  89.99      Sports   Nike  tablet
+    E005    U002   cart_add    NaN        Home Keurig desktop
+    E006    U001   purchase  79.99        Home Keurig  mobile
+
+[2] Glue ETL: Cleaning and enriching data...
+Cleaned events count: 6
+event_id user_id event_type  price    category  brand  device
+    E001    U001   purchase 129.99 Electronics   Sony  mobile
+    E002    U002       view    NaN      Sports   Nike desktop
+    E003    U001      click    NaN Electronics   Sony  mobile
+    E004    U003   purchase  89.99      Sports   Nike  tablet
+    E005    U002   cart_add    NaN        Home Keurig desktop
+    E006    U001   purchase  79.99        Home Keurig  mobile
+
+[3] Sessionizing events (30-min timeout)...
+event_id user_id event_type  price    category  brand  device session_id
+    E001    U001   purchase 129.99 Electronics   Sony  mobile       S001
+    E002    U002       view    NaN      Sports   Nike desktop       S002
+    E003    U001      click    NaN Electronics   Sony  mobile       S001
+    E004    U003   purchase  89.99      Sports   Nike  tablet       S003
+    E005    U002   cart_add    NaN        Home Keurig desktop       S002
+    E006    U001   purchase  79.99        Home Keurig  mobile       S001
+
+[4] Loading to Redshift: Fact Sales...
+Fact Sales table:
+session_id user_id  total_revenue  items_purchased
+      S001    U001         209.98                2
+      S003    U003          89.99                1
+
+[5] EMR Spark: Customer LTV Features...
+Customer LTV predictions:
+user_id  frequency  monetary  predicted_ltv
+   U001          3    209.98        314.970
+   U002          2      0.00          0.000
+   U003          1     89.99        134.985
+
+============================================================
+  DEMO COMPLETE - Pipeline processed all layers!
+  • Real-time ingestion: Kinesis + Lambda
+  • Batch ETL: Glue PySpark job
+  • ML Features: EMR Spark cluster
+  • Warehouse: Redshift star schema
+============================================================
 ```
 
 ## Results & Impact
