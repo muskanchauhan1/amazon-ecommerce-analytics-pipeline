@@ -8,7 +8,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&logoColor=white)](https://terraform.io/)
 
-> **End-to-end, production-grade AWS data engineering pipeline** — processes 1M+ daily e-commerce events through real-time ingestion, batch ETL, Spark ML feature engineering, and a star-schema data warehouse. Every component maps directly to the Amazon Data Engineer JD requirements.
+> **End-to-end, production-grade AWS data engineering pipeline** — processes 1M+ daily e-commerce events through real-time ingestion, batch ETL, Spark ML feature engineering, and a star-schema data warehouse. 
 
 ---
 
